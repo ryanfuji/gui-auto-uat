@@ -1,0 +1,19 @@
+{
+  "name": "gui-auto-uat",
+  "version": "1.0.0",
+  "description": "Web App to create and run Cucumber User Acceptance Test from a GUI",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpfujiw/gui-auto-uat.git"
+  },
+  "author": "Ryan Fujiwara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rpfujiw/gui-auto-uat/issues"
+  },
+  "homepage": "https://github.com/rpfujiw/gui-auto-uat#readme"
+}
