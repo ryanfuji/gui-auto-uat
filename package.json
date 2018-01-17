@@ -1,19 +1,36 @@
 {
   "name": "gui-auto-uat",
   "version": "1.0.0",
-  "description": "Web App to create and run Cucumber User Acceptance Test from a GUI",
+  "description": "Web App to create and run WebdriverIO with Cucumber User Acceptance Tests from a GUI",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test:validate && npm run test:unit && npm run test:features",
+    "test:features": "npm run local-webserver & (wdio wdio.BUILD.conf.js; wdio_ret=$?; forever stopall; exit $wdio_ret)",
+    "test:unit": "jest --config=jest.json",
+    "test:validate": "eslint 'src/**/*.js' 'test/**/*.js!(setup.js)'"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rpfujiw/gui-auto-uat.git"
   },
-  "author": "Ryan Fujiwara",
+  "author": "Ryan Fujiwara <rpfujiw@gmail.com>",
+  "contributors": [
+    
+  ],
   "bugs": {
     "url": "https://github.com/rpfujiw/gui-auto-uat/issues"
   },
+  "keywords": [
+    "webdriverio",
+    "cucumber",
+    "test",
+    "gui",
+    "angular",
+    "mongodb",
+    "selenium",
+    "express",
+    "nodejs"
+  ],
   "homepage": "https://github.com/rpfujiw/gui-auto-uat#readme",
   "license": "MIT",
   "dependencies": {
