@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "npm run test:validate && npm run test:unit && npm run test:features",
-    "test:features": "npm run local-webserver & (wdio wdio.BUILD.conf.js; wdio_ret=$?; forever stopall; exit $wdio_ret)",
+    "test:features": "wdio wdio.BUILD.conf.js; wdio_ret=$?; exit $wdio_ret",
     "test:unit": "jest --config=jest.json",
     "test:validate": "eslint 'src/**/*.js' 'test/**/*.js!(setup.js)'"
   },
@@ -14,9 +14,7 @@
     "url": "git+https://github.com/rpfujiw/gui-auto-uat.git"
   },
   "author": "Ryan Fujiwara <rpfujiw@gmail.com>",
-  "contributors": [
-    
-  ],
+  "contributors": [],
   "bugs": {
     "url": "https://github.com/rpfujiw/gui-auto-uat/issues"
   },
@@ -37,7 +35,9 @@
     "babel-preset-es2015": "~6.24.0",
     "babel-register": "~6.26.0",
     "chai": "~4.1.2",
+    "mochawesome-report-generator": "^3.1.0",
     "wdio-cucumber-framework": "~1.0.2",
+    "wdio-mochawesome-reporter": "^1.1.4",
     "wdio-phantomjs-service": "~0.2.2",
     "wdio-selenium-standalone-service": "~0.0.9",
     "wdio-spec-reporter": "~0.1.2",
@@ -46,11 +46,13 @@
   "devDependencies": {
     "babel-jest": "~22.1.0",
     "babel-polyfill": "~6.26.0",
+    "chromedriver": "^2.34.1",
     "eslint": "~4.15.0",
     "eslint-config-airbnb-base": "~12.1.0",
     "eslint-plugin-import": "~2.8.0",
     "forever": "~0.15.3",
     "http-server": "~0.11.0",
-    "jest": "~22.1.0"
+    "jest": "~22.1.0",
+    "wdio-chromedriver-service": "^0.1.2"
   }
 }

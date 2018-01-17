@@ -46,7 +46,7 @@ exports.config = {
         // make sure that not more than 5 instance gets started at a time.
         maxInstances: 5,
         //
-        browserName: 'chrome',
+        browserName: 'phantomjs',
     }],
     //
     // ===================
@@ -118,7 +118,11 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
-    reporters: ['spec'],
+    reporters: ['spec','mochawesome'],
+    reporterOptions: {
+        outputDir: './results', //json file will be written to this directory
+        mochawesome_filename: 'results.json' //will default to wdiomochawesome.json if no name is provided
+    },
     //
     // If you are using Cucumber you need to specify the location of your step
     // definitions.

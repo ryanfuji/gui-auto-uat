@@ -1,9 +1,9 @@
 const wdioConfig = require('./wdio.conf.js');
 
 wdioConfig.config.capabilities = [{
-    browserName: 'phantomjs',
+    browserName: 'chrome',
 }];
 
-wdioConfig.config.services = ['phantomjs'];
+wdioConfig.config.services = ['phantomjs','chromedriver'];
 
 exports.config = wdioConfig.config;
