@@ -2,19 +2,20 @@
     <div class="sidebar-sticky">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+            true}">
             <span data-feather="monitor"></span>
             Projects
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/suites">
+          <a class="nav-link" routerLink="/suites" routerLinkActive="active">
             <span data-feather="folder"></span>
             Suites
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/features">
+          <a class="nav-link" routerLink="/features" routerLinkActive="active">
             <span data-feather="file"></span>
             Features
           </a>

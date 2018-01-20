@@ -25,6 +25,8 @@ const app = express();
 
 // Import Routes
 import featureRunner from './routes/feature-runner.route';
+import projects from './routes/projects.route';
+import suites from './routes/suites.route';
 
 // Express App Port
 const port = 3000;
@@ -40,6 +42,8 @@ app.use(express.json());
 
 // Set Routes
 app.use('/feature-runner', featureRunner);
+app.use('/projects', projects);
+app.use('/suites', suites);
 
 // Index Route
 app.get('/', (req, res) => {

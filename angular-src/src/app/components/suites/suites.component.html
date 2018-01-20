@@ -1,3 +1,37 @@
-<p>
-  suites works!
-</p>
+<div *ngIf="showLoadingImage" class="loading"><span class="loadingTextContainer"><strong>Processing...Please Wait.</strong></span></div>
+<div *ngIf="showLoadingSuitesError" class="alert alert-danger" role="alert">
+  There was a problem retrieving the test suites from the database.
+</div>
+<div *ngIf="showSuiteCreatedFailure" class="alert alert-danger" role="alert">
+  There was a problem creating new test suite.
+</div>
+<h4>Suites</h4>
+<div class="col-sm-12">
+  <table *ngIf="suites.length > 0" class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let suite of suites">
+        <td>{{suite.title}}</td>
+        <td>
+          <a href="#" (click)="openModal(suite)"><span data-feather="edit-2"></span></a>&nbsp;&nbsp;
+          <a href="#" (click)="deleteSuite(suite._id)"><span data-feather="x-circle"></span></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="suites.length === 0">
+    <i>There are no test suites created for this project yet...</i>
+  </p>
+  <div class="col-md-6 col-sm-12">
+    <h5>Create New Test Suite</h5>
+    <form class="form-inline" [formGroup]="suiteForm">
+      <input type="text" class="form-control mb-2 mr-sm-2" [ngClass]="{'is-invalid': suiteForm.invalid && (suiteForm.get('title').touched || createButtonClicked)}" formControlName="title" placeholder="Test Suite Title">
+      <button type="button" (click)="createNewSuite()" class="btn btn-primary mb-2">Create</button>
+    </form>
+  </div>
+</div>

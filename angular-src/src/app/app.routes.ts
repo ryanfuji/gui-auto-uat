@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { FeaturesComponent } from './components/features/features.component';
 import { SuitesComponent } from './components/suites/suites.component';
+import { SuitesGuardService } from './services/suites-guard.service';
 
 export const appRoutes: Routes = [
   {
@@ -10,7 +11,8 @@ export const appRoutes: Routes = [
   },
   {
     path: 'suites',
-    component: SuitesComponent
+    component: SuitesComponent,
+    canActivate: [SuitesGuardService]
   },
   {
     path: 'features',

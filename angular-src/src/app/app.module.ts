@@ -13,6 +13,10 @@ import { NavigationStateService } from './services/navigation-state.service';
 import { FeaturesComponent } from './components/features/features.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { SuitesComponent } from './components/suites/suites.component';
+import { ProjectsService } from './services/projects.service';
+import { SuitesGuardService } from './services/suites-guard.service';
+import { FeaturesGuardService } from './services/features-guard.service';
+import { SuitesService } from './services/suites.service';
 
 @NgModule({
   declarations: [
@@ -27,12 +31,17 @@ import { SuitesComponent } from './components/suites/suites.component';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
     MomentModule
   ],
   providers: [
-    NavigationStateService
+    NavigationStateService,
+    ProjectsService,
+    SuitesGuardService,
+    FeaturesGuardService,
+    SuitesService
   ],
   bootstrap: [AppComponent]
 })

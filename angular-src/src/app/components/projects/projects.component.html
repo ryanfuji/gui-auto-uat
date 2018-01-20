@@ -1,3 +1,66 @@
-<p>
-  projects works!
-</p>
+<div *ngIf="showLoadingImage" class="loading"><span class="loadingTextContainer"><strong>Processing...Please Wait.</strong></span></div>
+<div *ngIf="showLoadingProjectsError" class="alert alert-danger" role="alert">
+  There was a problem retrieving the projects from the database.
+</div>
+<div *ngIf="showProjectCreatedFailure" class="alert alert-danger" role="alert">
+  There was a problem creating new project.
+</div>
+<div *ngIf="showProjectEditFailure" class="alert alert-danger" role="alert">
+  There was a problem modifying project.
+</div>
+<h4>Projects</h4>
+<div class="col-sm-12">
+    <table *ngIf="projects.length > 0" class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects">
+          <td (click)="selectProject(project)">{{project.title}}</td>
+          <td>
+            <a href="#"><span data-feather="play-circle"></span></a>&nbsp;&nbsp;
+            <a href="#" (click)="openModal(project)"><span data-feather="edit-2"></span></a>&nbsp;&nbsp;
+            <a href="#" (click)="deleteProject(project._id)"><span data-feather="x-circle"></span></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="projects.length === 0">
+      <i>You have no projects created yet...</i>
+    </p>
+    <div class="col-md-6 col-sm-12">
+      <h5>Create New Project</h5>
+      <form class="form-inline" [formGroup]="projectForm">
+        <input type="text" class="form-control mb-2 mr-sm-2" [ngClass]="{'is-invalid': projectForm.invalid && (projectForm.get('title').touched || createButtonClicked)}" formControlName="title" placeholder="Project Title">
+        <button type="button" (click)="createNewProject()" class="btn btn-primary mb-2">Create</button>
+      </form>
+    </div>
+</div>
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div *ngIf="addModalToDom" class="modal" [ngStyle]="{'display':display}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Project</h5>
+        <button type="button" class="close" data-dismiss="modal" (click)="closeModal()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editProjectForm">
+          <div class="form-group">
+            <label for="project-title">Project Title</label>
+            <input type="text" id="project-title" class="form-control mb-2 mr-sm-2" [ngClass]="{'is-invalid': editProjectForm.invalid && (editProjectForm.get('title').touched || editProjectButtonClicked)}" formControlName="title" placeholder="Project Title">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="editProject()" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" (click)="closeModal()" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

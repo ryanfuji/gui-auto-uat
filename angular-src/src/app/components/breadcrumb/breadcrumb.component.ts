@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationStateService } from '../../services/navigation-state.service';
+import { ProjectModel } from '../../models/project.model';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BreadcrumbComponent implements OnInit {
 
-  constructor() { }
+  project: ProjectModel;
+
+  constructor(private navigationStateService: NavigationStateService) {
+
+  }
 
   ngOnInit() {
+    this.navigationStateService.selectedProject$
+      .subscribe(
+        (project) => {
+          this.project = project;
+        }
+      );
   }
 
 }
