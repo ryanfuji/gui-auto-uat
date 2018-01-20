@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProjectModel } from '../models/project.model';
 import { SuiteModel } from '../models/suite.model';
+import { FeatureModel } from '../models/feature.model';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
@@ -9,10 +10,13 @@ export class NavigationStateService {
 
   projectIdSelected: string;
   suiteIdSelected: string;
+  featureIdSelected: string;
   private selectedProject = new Subject<ProjectModel>();
   selectedProject$: Observable<ProjectModel> = this.selectedProject.asObservable();
   private selectedSuite = new Subject<SuiteModel>();
   selectedSuite$: Observable<SuiteModel> = this.selectedSuite.asObservable();
+  private selectedFeature = new Subject<FeatureModel>();
+  selectedFeature$: Observable<FeatureModel> = this.selectedFeature.asObservable();
 
   constructor() {
 
@@ -35,7 +39,17 @@ export class NavigationStateService {
     } else {
       this.suiteIdSelected = null;
     }
+    this.announceFeatureSelected(null);
     this.selectedSuite.next(suite);
+  }
+
+  announceFeatureSelected(feature: FeatureModel){
+    if(feature){
+      this.featureIdSelected = feature._id;
+    } else {
+      this.featureIdSelected = null;
+    }
+    this.selectedFeature.next(feature);
   }
 
 }

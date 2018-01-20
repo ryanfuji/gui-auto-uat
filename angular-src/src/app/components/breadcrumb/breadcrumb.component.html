@@ -3,5 +3,6 @@
     <li *ngIf="!project" class="breadcrumb-item">No Project Selected</li>
     <li *ngIf="project" class="breadcrumb-item"><a>{{project.title}}</a></li>
     <li *ngIf="suite" class="breadcrum-item">&nbsp;&nbsp;/&nbsp;&nbsp;<a>{{suite.title}}</a></li>
+    <li *ngIf="feature" class="breadcrum-item">&nbsp;&nbsp;/&nbsp;&nbsp;<a>{{feature.title}}</a></li>
   </ol>
 </nav>

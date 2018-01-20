@@ -1,3 +1,84 @@
-<p>
-  features works!
-</p>
+<div *ngIf="showLoadingImage" class="loading"><span class="loadingTextContainer"><strong>Processing...Please Wait.</strong></span></div>
+<div *ngIf="showLoadingFeaturesError" class="alert alert-danger" role="alert">
+  There was a problem retrieving the features from the database.
+</div>
+<div *ngIf="showFeatureCreatedFailure" class="alert alert-danger" role="alert">
+  There was a problem creating new feature.
+</div>
+<div *ngIf="showFeatureEditFailure" class="alert alert-danger" role="alert">
+  There was a problem modifying the feature.
+</div>
+<div *ngIf="showFeatureDeleteFailure" class="alert alert-danger" role="alert">
+  There was a problem deleting the feature.
+</div>
+<h4>Features</h4>
+<div class="col-sm-12">
+  <table *ngIf="features.length > 0" class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Story</th>
+        <th scope="col">Filename</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let feature of features">
+        <td (click)="selectFeature(feature)">{{feature.title}}</td>
+        <td (click)="selectFeature(feature)">{{feature.story}}</td>
+        <td (click)="selectFeature(feature)">{{feature.filename}}</td>
+        <td>
+          <a (click)="openModal(feature)"><span data-feather="edit-2"></span></a>&nbsp;&nbsp;
+          <a (click)="deleteFeature(feature._id)"><span data-feather="x-circle"></span></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="features.length === 0">
+    <i>There are no features created for this test suite yet...</i>
+  </p>
+  <div class="col-md-6 col-sm-12">
+    <h5>Create New Feature</h5>
+    <form class="form" [formGroup]="featureForm">
+      <div class="form-group">
+        <input type="text" class="form-control mb-2 mr-sm-2" [ngClass]="{'is-invalid': featureForm.get('title').invalid && (featureForm.get('title').touched || createButtonClicked)}" formControlName="title" placeholder="Feature Title">
+        <input type="text" class="form-control mb-2 mr-sm-2" [ngClass]="{'is-invalid': featureForm.get('filename').invalid && (featureForm.get('filename').touched || createButtonClicked)}" formControlName="filename" placeholder="Feature Filename">
+        <textarea class="form-control" formControlName="story" rows="4" [ngClass]="{'is-invalid': featureForm.get('story').invalid && (featureForm.get('story').touched || createButtonClicked)}" placeholder="Feature Story"></textarea>
+      </div>
+      <button type="button" (click)="createNewFeature()" class="btn btn-primary mb-2">Create</button>
+    </form>
+  </div>
+</div>
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div *ngIf="addModalToDom" class="modal" [ngStyle]="{'display':display}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Feature</h5>
+        <button type="button" class="close" data-dismiss="modal" (click)="closeModal()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editFeatureForm">
+          <div class="form-group">
+            <label for="title">Feature Title</label>
+            <input id="title" type="text" class="form-control mb-2 mr-sm-2" [ngClass]="{'is-invalid': editFeatureForm.get('title').invalid && (editFeatureForm.get('title').touched || editFeatureButtonClicked)}" formControlName="title" placeholder="Feature Title">
+          </div>
+          <div class="form-group">
+            <label for="filename">Feature Filename</label>
+            <input id="filename" type="text" class="form-control mb-2 mr-sm-2" [ngClass]="{'is-invalid': editFeatureForm.get('filename').invalid && (editFeatureForm.get('filename').touched || editFeatureButtonClicked)}" formControlName="filename" placeholder="Feature Filename">
+          </div>
+          <div class="form-group">
+              <label for="story">Feature Story</label>
+              <textarea id="story" class="form-control" formControlName="story" rows="4" [ngClass]="{'is-invalid': featureForm.get('story').invalid && (featureForm.get('story').touched || editFeatureButtonClicked)}"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="editFeature()" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" (click)="closeModal()" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

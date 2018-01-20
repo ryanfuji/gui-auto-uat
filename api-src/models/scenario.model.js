@@ -6,6 +6,12 @@ const ScenarioSchema = Schema({
     featureId: {
         type: String
     },
+    suiteId: {
+        type: String
+    },
+    projectId: {
+        type: String
+    },
     title: {
         type: String
     },

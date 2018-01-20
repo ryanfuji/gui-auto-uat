@@ -17,6 +17,9 @@ import { ProjectsService } from './services/projects.service';
 import { SuitesGuardService } from './services/suites-guard.service';
 import { FeaturesGuardService } from './services/features-guard.service';
 import { SuitesService } from './services/suites.service';
+import { FeaturesService } from './services/features.service';
+import { ScenariosComponent } from './components/scenarios/scenarios.component';
+import { ScenariosGuardService } from './services/scenarios-guard.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { SuitesService } from './services/suites.service';
     BreadcrumbComponent,
     FeaturesComponent,
     ProjectsComponent,
-    SuitesComponent
+    SuitesComponent,
+    ScenariosComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,9 @@ import { SuitesService } from './services/suites.service';
     ProjectsService,
     SuitesGuardService,
     FeaturesGuardService,
-    SuitesService
+    SuitesService,
+    FeaturesService,
+    ScenariosGuardService
   ],
   bootstrap: [AppComponent]
 })
