@@ -8,6 +8,9 @@
 <div *ngIf="showProjectEditFailure" class="alert alert-danger" role="alert">
   There was a problem modifying project.
 </div>
+<div *ngIf="showProjectDeleteFailure" class="alert alert-danger" role="alert">
+  There was a problem deleting the project.
+</div>
 <h4>Projects</h4>
 <div class="col-sm-12">
     <table *ngIf="projects.length > 0" class="table table-hover">
@@ -21,9 +24,9 @@
         <tr *ngFor="let project of projects">
           <td (click)="selectProject(project)">{{project.title}}</td>
           <td>
-            <a href="#"><span data-feather="play-circle"></span></a>&nbsp;&nbsp;
-            <a href="#" (click)="openModal(project)"><span data-feather="edit-2"></span></a>&nbsp;&nbsp;
-            <a href="#" (click)="deleteProject(project._id)"><span data-feather="x-circle"></span></a>
+            <a href="/"><span data-feather="play-circle"></span></a>&nbsp;&nbsp;
+            <a (click)="openModal(project)"><span data-feather="edit-2"></span></a>&nbsp;&nbsp;
+            <a (click)="deleteProject(project._id)"><span data-feather="x-circle"></span></a>
           </td>
         </tr>
       </tbody>

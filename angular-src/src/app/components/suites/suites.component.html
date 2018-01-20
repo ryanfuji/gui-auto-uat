@@ -5,6 +5,12 @@
 <div *ngIf="showSuiteCreatedFailure" class="alert alert-danger" role="alert">
   There was a problem creating new test suite.
 </div>
+<div *ngIf="showSuiteEditFailure" class="alert alert-danger" role="alert">
+  There was a problem modifying the test suite.
+</div>
+<div *ngIf="showSuiteDeleteFailure" class="alert alert-danger" role="alert">
+  There was a problem deleting the test suite.
+</div>
 <h4>Suites</h4>
 <div class="col-sm-12">
   <table *ngIf="suites.length > 0" class="table table-hover">
@@ -16,10 +22,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let suite of suites">
-        <td>{{suite.title}}</td>
+        <td (click)="selectSuite(suite)">{{suite.title}}</td>
         <td>
-          <a href="#" (click)="openModal(suite)"><span data-feather="edit-2"></span></a>&nbsp;&nbsp;
-          <a href="#" (click)="deleteSuite(suite._id)"><span data-feather="x-circle"></span></a>
+          <a (click)="openModal(suite)"><span data-feather="edit-2"></span></a>&nbsp;&nbsp;
+          <a (click)="deleteSuite(suite._id)"><span data-feather="x-circle"></span></a>
         </td>
       </tr>
     </tbody>
@@ -33,5 +39,30 @@
       <input type="text" class="form-control mb-2 mr-sm-2" [ngClass]="{'is-invalid': suiteForm.invalid && (suiteForm.get('title').touched || createButtonClicked)}" formControlName="title" placeholder="Test Suite Title">
       <button type="button" (click)="createNewSuite()" class="btn btn-primary mb-2">Create</button>
     </form>
+  </div>
+</div>
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div *ngIf="addModalToDom" class="modal" [ngStyle]="{'display':display}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Test Suite</h5>
+        <button type="button" class="close" data-dismiss="modal" (click)="closeModal()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editSuiteForm">
+          <div class="form-group">
+            <label for="project-title">Test Suite Title</label>
+            <input type="text" id="project-title" class="form-control mb-2 mr-sm-2" [ngClass]="{'is-invalid': editSuiteForm.invalid && (editSuiteForm.get('title').touched || editSuiteButtonClicked)}" formControlName="title" placeholder="Test Suite Title">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="editSuite()" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" (click)="closeModal()" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
   </div>
 </div>

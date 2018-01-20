@@ -1,6 +1,7 @@
 <nav>
   <ol class="breadcrumb">
     <li *ngIf="!project" class="breadcrumb-item">No Project Selected</li>
-    <li *ngIf="project" class="breadcrumb-item">{{project.title}}</li>
+    <li *ngIf="project" class="breadcrumb-item"><a>{{project.title}}</a></li>
+    <li *ngIf="suite" class="breadcrum-item">&nbsp;&nbsp;/&nbsp;&nbsp;<a>{{suite.title}}</a></li>
   </ol>
 </nav>
