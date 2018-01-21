@@ -1,0 +1,68 @@
+<div *ngIf="showLoadingImage" class="loading"><span class="loadingTextContainer"><strong>Processing...Please Wait.</strong></span></div>
+<div *ngIf="showLoadingStepsError" class="alert alert-danger">
+  There was a problem retrieving the steps from the database.
+</div>
+<div *ngIf="showCreateScenarioError" class="alert alert-danger">
+  There was a problem creating the new scenario.
+</div>
+<h4><a (click)="goBackToScenarioHome()"><span data-feather="arrow-left-circle"></span></a>&nbsp;&nbsp;Create New Scenario</h4>
+<form class="form" [formGroup]="scenarioForm">
+  <div class="col-sm-12">
+      <input type="text" class="form-control mb-2 mr-sm-2" [ngClass]="{'is-invalid': scenarioForm.get('title').invalid && (scenarioForm.get('title').touched || createButtonClicked)}" formControlName="title" placeholder="Scenario Title">
+  </div>
+</form>
+<div class="row">
+  <div class="col" *ngIf="creatingGiven">
+    <div class="col" *ngIf="showGivenSelect">
+      <h6>Precondition</h6>
+      <select (change)="selectedGiven($event.target.value)" class="form-control">
+        <option disabled>Select Precondition</option>
+        <option *ngFor="let givenStep of givenSteps" value="{{givenStep}}">{{givenStep}}</option>
+      </select>
+    </div>
+    <div class="col" *ngIf="showGivenAdd">
+      <app-step [type]="givenType" [step]="givenSelected" (processedStep)="handleGivenStep($event)"></app-step>
+    </div>
+  </div>
+  <div class="col" *ngIf="creatingWhen">
+    <div class="col" *ngIf="showWhenSelect">
+      <h6>Action</h6>
+      <select (change)="selectedWhen($event.target.value)" class="form-control">
+        <option disabled>Select Action</option>
+        <option *ngFor="let whenStep of whenSteps" value="{{whenStep}}">{{whenStep}}</option>
+      </select>
+    </div>
+    <div class="col" *ngIf="showWhenAdd">
+      <app-step [type]="whenType" [step]="whenSelected" (processedStep)="handleWhenStep($event)"></app-step>
+    </div>
+  </div>
+  <div class="col" *ngIf="creatingThen">
+    <div class="col" *ngIf="showThenSelect">
+      <h6>Expectation</h6>
+      <select (change)="selectedThen($event.target.value)" class="form-control">
+        <option disabled>Select Expectation</option>
+        <option *ngFor="let thenStep of thenSteps" value="{{thenStep}}">{{thenStep}}</option>
+      </select>
+    </div>
+    <div class="col" *ngIf="showThenAdd">
+      <app-step [type]="thenType" [step]="thenSelected" (processedStep)="handleThenStep($event)"></app-step>
+    </div>
+  </div>
+  <div class="col">
+    <h6>Scenario Preview</h6>
+    <p>
+      <strong>Scenario:</strong> {{scenarioForm.get('title').value}}<br>
+      <span *ngFor="let given of finalGivenSteps">&nbsp;&nbsp;&nbsp;&nbsp;{{given}}<br></span>
+      <span *ngFor="let when of finalWhenSteps">&nbsp;&nbsp;&nbsp;&nbsp;{{when}}<br></span>
+      <span *ngFor="let then of finalThenSteps">&nbsp;&nbsp;&nbsp;&nbsp;{{then}}<br></span>
+    </p>
+    <div class="text-right">
+      <button *ngIf="creatingGiven" type="button" (click)="restartGiven()" class="btn btn-secondary mb-2" [disabled]="finalGivenSteps.length === 0">Start Over</button>
+      <button *ngIf="creatingGiven" type="button" (click)="moveToWhen()" class="btn btn-primary mb-2" [disabled]="finalGivenSteps.length === 0">Finish Precondition(s)</button>
+      <button *ngIf="creatingWhen" type="button" (click)="moveBackToGiven()" class="btn btn-secondary mb-2">Back</button>
+      <button *ngIf="creatingWhen" type="button" (click)="moveToThen()" class="btn btn-primary mb-2">Finish Action(s)</button>
+      <button *ngIf="creatingThen" type="button" (click)="moveBackToWhen()" class="btn btn-secondary mb-2">Back</button>
+      <button *ngIf="creatingThen" type="button" (click)="saveScenario()" class="btn btn-primary mb-2">Save Scenario</button>
+    </div>
+  </div>
+</div>

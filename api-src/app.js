@@ -28,6 +28,8 @@ import featureRunner from './routes/feature-runner.route';
 import projects from './routes/projects.route';
 import suites from './routes/suites.route';
 import features from './routes/features.route';
+import scenarios from './routes/scenarios.route';
+import steps from './routes/steps.route';
 
 // Express App Port
 const port = 3000;
@@ -46,6 +48,8 @@ app.use('/feature-runner', featureRunner);
 app.use('/projects', projects);
 app.use('/suites', suites);
 app.use('/features', features);
+app.use('/scenarios', scenarios);
+app.use('/steps', steps);
 
 // Index Route
 app.get('/', (req, res) => {

@@ -1,0 +1,23 @@
+<div *ngIf="stepForm">
+  <h6>Assign Variables</h6>
+  <i>* For Elements and Buttons use CSS Selectors where applicable</i>
+  <form class="form" [formGroup]="stepForm">
+    <div class="formGroup" *ngIf="stepStringArray.length >= 2">
+        <input type="text" class="form-control mb-2 mr-sm-2" [ngClass]="{'is-invalid': stepForm.get('firstVariable').invalid && (stepForm.get('firstVariable').touched || addButtonClicked)}" formControlName="firstVariable" placeholder="First Variable">
+    </div>
+    <div class="formGroup" *ngIf="stepStringArray.length >= 3">
+        <input type="text" class="form-control mb-2 mr-sm-2" [ngClass]="{'is-invalid': stepForm.get('secondVariable').invalid && (stepForm.get('secondVariable').touched || addButtonClicked)}" formControlName="secondVariable" placeholder="Second Variable">
+    </div>
+    <div class="formGroup" *ngIf="stepStringArray.length === 4">
+        <input type="text" class="form-control mb-2 mr-sm-2" [ngClass]="{'is-invalid': stepForm.get('thirdVariable').invalid && (stepForm.get('thirdVariable').touched || addButtonClicked)}" formControlName="thirdVariable" placeholder="Third Variable">
+    </div>
+  </form>
+</div>
+<h6>Step Preview</h6>
+<p *ngIf="stepStringArray.length === 1">{{stepStringArray[0]}}</p>
+<p *ngIf="stepStringArray.length === 2">{{stepStringArray[0]+stepForm.get('firstVariable').value+stepStringArray[1]}}</p>
+<p *ngIf="stepStringArray.length === 3">{{stepStringArray[0]+stepForm.get('firstVariable').value+stepStringArray[1]+stepForm.get('secondVariable').value+stepStringArray[2]}}</p>
+<p *ngIf="stepStringArray.length === 4">{{stepStringArray[0]+stepForm.get('firstVariable').value+stepStringArray[1]+stepForm.get('secondVariable').value+stepStringArray[2]+stepForm.get('thirdVariable').value+stepStringArray[3]}}</p>
+<button type="button" class="btn btn-secondary mb-2" (click)="finalizedStep.emit(null)">Back</button>
+<button type="button" (click)="addStep()" class="btn btn-primary mb-2">Add Step</button>
+

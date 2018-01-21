@@ -1,3 +1,57 @@
-<p>
-  scenarios works!
-</p>
+<div *ngIf="componentToOpen==='scenarioHome'">
+  <div *ngIf="showLoadingImage" class="loading"><span class="loadingTextContainer"><strong>Processing...Please Wait.</strong></span></div>
+  <div *ngIf="showLoadingScenariosError" class="alert alert-danger">
+    There was a problem retrieving the scenarios from the database.
+  </div>
+  <div *ngIf="showDeleteScenarioError" class="alert alert-danger">
+    There was a problem deleting the scenario.
+  </div>
+  <h4>Scenarios</h4>
+  <div class="col-sm-12">
+    <table *ngIf="scenarios.length > 0" class="table">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let scenario of scenarios">
+          <td (click)="selectFeature(feature)">{{scenario.title}}</td>
+          <td>
+            <a (click)="viewScenario(scenario)"><span data-feather="zoom-in"></span></a>&nbsp;&nbsp;
+            <a (click)="deleteScenario(scenario._id)"><span data-feather="x-circle"></span></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="scenarios.length === 0">
+      <i>There are no scenarios created for this feature yet...</i>
+    </p>
+    <button type="button" (click)="createNewScenario()" class="btn btn-primary mb-2">Create New Scenario</button>
+  </div>
+</div>
+<app-create-scenario *ngIf="componentToOpen==='createScenario'"></app-create-scenario>
+<app-edit-scenario *ngIf="componentToOpen==='editScenario'"></app-edit-scenario>
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div *ngIf="addModalToDom" class="modal" [ngStyle]="{'display':display}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Scenario Details</h5>
+        <button type="button" class="close" data-dismiss="modal" (click)="closeModal()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <strong>Scenario:</strong> {{scenarioToView.title}}<br>
+          <span *ngFor="let step of scenarioToView.steps">&nbsp;&nbsp;&nbsp;&nbsp;{{step}}<br></span>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="closeModal()" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

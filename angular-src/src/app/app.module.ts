@@ -20,6 +20,12 @@ import { SuitesService } from './services/suites.service';
 import { FeaturesService } from './services/features.service';
 import { ScenariosComponent } from './components/scenarios/scenarios.component';
 import { ScenariosGuardService } from './services/scenarios-guard.service';
+import { ScenariosService } from './services/scenarios.service';
+import { StepsService } from './services/steps.service';
+import { CreateScenarioComponent } from './components/scenarios/create-scenario/create-scenario.component';
+import { EditScenarioComponent } from './components/scenarios/edit-scenario/edit-scenario.component';
+import { ScenarioStateService } from './services/scenario-state.service';
+import { StepComponent } from './components/scenarios/create-scenario/step/step.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,10 @@ import { ScenariosGuardService } from './services/scenarios-guard.service';
     FeaturesComponent,
     ProjectsComponent,
     SuitesComponent,
-    ScenariosComponent
+    ScenariosComponent,
+    CreateScenarioComponent,
+    EditScenarioComponent,
+    StepComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +56,10 @@ import { ScenariosGuardService } from './services/scenarios-guard.service';
     FeaturesGuardService,
     SuitesService,
     FeaturesService,
-    ScenariosGuardService
+    ScenariosGuardService,
+    ScenariosService,
+    StepsService,
+    ScenarioStateService
   ],
   bootstrap: [AppComponent]
 })

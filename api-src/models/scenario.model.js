@@ -16,7 +16,7 @@ const ScenarioSchema = Schema({
         type: String
     },
     steps: {
-        type: String[]
+        type: [String]
     }
 
 });

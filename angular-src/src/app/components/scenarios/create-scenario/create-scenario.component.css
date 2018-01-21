@@ -2,3 +2,7 @@ a {
   color: #007bff !important;
   cursor: pointer;
 }
+
+.feather {
+  vertical-align: middle !important;
+}
