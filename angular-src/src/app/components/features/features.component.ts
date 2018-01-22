@@ -4,6 +4,8 @@ import { FeatureModel } from '../../models/feature.model';
 import { FeaturesService } from '../../services/features.service';
 import { NavigationStateService } from '../../services/navigation-state.service';
 import * as feather from 'feather-icons';
+import { Subject } from 'rxjs/Subject';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-features',
@@ -25,6 +27,8 @@ export class FeaturesComponent implements OnInit, AfterViewChecked {
   addModalToDom: boolean = false;
   display: string = 'none';
   showFeatureDeleteFailure: boolean = false;
+  private filenameCheck = new Subject<string>();
+  filenameExists: boolean = false;
 
   constructor(private featuresService: FeaturesService,
     private navigationStateService: NavigationStateService,
@@ -45,10 +49,26 @@ export class FeaturesComponent implements OnInit, AfterViewChecked {
           this.showLoadingImage = false;
         }
       );
+    this.filenameCheck.pipe(debounceTime(500))
+      .subscribe(
+        (filename) => {
+          this.featuresService.checkIfFilenameExists(this.navigationStateService.projectIdSelected, filename)
+            .subscribe(
+              (exists) => {
+                this.filenameExists = true;
+                this.featureForm.get('filename').reset();
+              }
+            );
+        }
+      );
   }
 
   ngAfterViewChecked(){
     feather.replace();
+  }
+
+  checkFilename(){
+    this.filenameCheck.next(this.featureForm.get('filename').value);
   }
 
   createFeatureForm(){

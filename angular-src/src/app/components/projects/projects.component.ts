@@ -25,6 +25,8 @@ export class ProjectsComponent implements OnInit, AfterViewChecked {
   editProjectForm: FormGroup;
   addModalToDom: boolean = false;
   editProjectButtonClicked: boolean = false;
+  showProjectGenerateFeaturesFailure: boolean = false;
+  showProjectGenerateFeaturesSuccess: boolean = false;
 
   constructor(private projectsSevice: ProjectsService,
     private formBuilder: FormBuilder,
@@ -157,6 +159,21 @@ export class ProjectsComponent implements OnInit, AfterViewChecked {
 
   selectProject(project: ProjectModel){
     this.navigationStateService.announceProjectSelected(project);
+  }
+
+  generateFeatures(projectId: string){
+    this.showLoadingImage = true;
+    this.projectsSevice.generateFeatures(projectId)
+      .subscribe(
+        (success) => {
+          this.showProjectGenerateFeaturesSuccess = true;
+          this.showLoadingImage = false;
+        },
+        (error) => {
+          this.showProjectGenerateFeaturesFailure = true;
+          this.showLoadingImage = false;
+        }
+      );
   }
 
 }

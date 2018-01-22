@@ -11,6 +11,12 @@
 <div *ngIf="showProjectDeleteFailure" class="alert alert-danger" role="alert">
   There was a problem deleting the project.
 </div>
+<div *ngIf="showProjectGenerateFeaturesFailure" class="alert alert-danger" role="alert">
+  There was a problem generating the features for the project.
+</div>
+<div *ngIf="showProjectGenerateFeaturesSuccess" class="alert alert-success" role="alert">
+  Feature files were successfully generated for the project!
+</div>
 <h4>Projects</h4>
 <div class="col-sm-12">
     <table *ngIf="projects.length > 0" class="table table-hover">
@@ -25,6 +31,7 @@
           <td (click)="selectProject(project)">{{project.title}}</td>
           <td>
             <a href="/"><span data-feather="play-circle"></span></a>&nbsp;&nbsp;
+            <a (click)="generateFeatures(project._id)"><span data-feather="zap"></span></a>&nbsp;&nbsp;
             <a (click)="openModal(project)"><span data-feather="edit-2"></span></a>&nbsp;&nbsp;
             <a (click)="deleteProject(project._id)"><span data-feather="x-circle"></span></a>
           </td>

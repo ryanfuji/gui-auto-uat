@@ -70,4 +70,18 @@ export class FeaturesService {
       );
   }
 
+  checkIfFilenameExists(projectId: string, filename: string): Observable<boolean> {
+    return this.http.get(this.baseUrl+'/fienameExists/'+projectId+'/'+filename)
+      .pipe(
+        map(
+          (result) => {
+            return result.json().fienameExists as boolean;
+          },
+          (error) => {
+            return error;
+          }
+        )
+      );
+  }
+
 }

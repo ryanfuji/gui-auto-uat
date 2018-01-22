@@ -20,4 +20,8 @@ export default class FeaturesService {
         return await Feature.findByIdAndRemove(featureId);
     }
 
+    async findByProjectAndFilename(projectId, filename){
+        return await Feature.find({projectId: projectId, filename: filename});
+    }
+
 }

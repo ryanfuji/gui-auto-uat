@@ -26,4 +26,10 @@ export default class ProjectsController {
         res.status(200).json(project);
     }
 
+    async generateAllFeatureFilesForProject(req, res, next){
+        const {projectId} = req.params;
+        await projectsService.generateAllFeatureFilesForProject(projectId);
+        res.status(200).json({featuresGenerated: true});
+    }
+
 }

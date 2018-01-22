@@ -15,4 +15,7 @@ routerInstance.route('/update')
 routerInstance.route('/delete/:projectId')
     .delete(controller.delete);
 
+routerInstance.route('/generateAllFeatureFilesForProject/:projectId')
+    .get(controller.generateAllFeatureFilesForProject);
+
 export default routerInstance;

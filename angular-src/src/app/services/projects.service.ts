@@ -70,4 +70,18 @@ export class ProjectsService {
       )
   }
 
+  generateFeatures(projectId: string): Observable<boolean> {
+    return this.http.get(this.baseUrl+'/generateAllFeatureFilesForProject/'+projectId)
+      .pipe(
+        map(
+          (result) => {
+            return result.json().featuresGenerated as boolean;
+          },
+          (error) => {
+            return error;
+          }
+        )
+      );
+  }
+
 }

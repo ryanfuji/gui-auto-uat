@@ -26,4 +26,14 @@ export default class FeaturesController {
         let feature = await featuresService.delete(featureId);
         res.status(200).json(feature);
     }
+
+    async filenameExists(req, res, next){
+        const {filename, projectId} = req.params;
+        let features = await featuresService.findByProjectAndFilename(projectId, filename);
+        if(features.length > 0){
+            res.status(200).json({filenameExists: true});
+        } else {
+            res.status(200).json({filenameExists: false});
+        }
+    }
 }
