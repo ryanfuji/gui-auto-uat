@@ -55,8 +55,10 @@ export class FeaturesComponent implements OnInit, AfterViewChecked {
           this.featuresService.checkIfFilenameExists(this.navigationStateService.projectIdSelected, filename)
             .subscribe(
               (exists) => {
-                this.filenameExists = true;
-                this.featureForm.get('filename').reset();
+                this.filenameExists = exists;
+                if(exists){
+                  this.featureForm.get('filename').reset();
+                }
               }
             );
         }

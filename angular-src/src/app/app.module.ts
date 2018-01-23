@@ -26,6 +26,11 @@ import { CreateScenarioComponent } from './components/scenarios/create-scenario/
 import { EditScenarioComponent } from './components/scenarios/edit-scenario/edit-scenario.component';
 import { ScenarioStateService } from './services/scenario-state.service';
 import { StepComponent } from './components/scenarios/create-scenario/step/step.component';
+import { FeatureRunnerService } from './services/feature-runner.service';
+import { ResultsService } from './services/results.service';
+import { ResultsStateService } from './services/results-state.service';
+import { TestResultsComponent } from './components/test-results/test-results.component';
+import { TestResultDetailComponent } from './components/test-result-detail/test-result-detail.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,9 @@ import { StepComponent } from './components/scenarios/create-scenario/step/step.
     ScenariosComponent,
     CreateScenarioComponent,
     EditScenarioComponent,
-    StepComponent
+    StepComponent,
+    TestResultsComponent,
+    TestResultDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +66,10 @@ import { StepComponent } from './components/scenarios/create-scenario/step/step.
     ScenariosGuardService,
     ScenariosService,
     StepsService,
-    ScenarioStateService
+    ScenarioStateService,
+    FeatureRunnerService,
+    ResultsService,
+    ResultsStateService
   ],
   bootstrap: [AppComponent]
 })

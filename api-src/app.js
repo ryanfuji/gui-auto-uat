@@ -30,6 +30,7 @@ import suites from './routes/suites.route';
 import features from './routes/features.route';
 import scenarios from './routes/scenarios.route';
 import steps from './routes/steps.route';
+import results from './routes/results.route';
 
 // Express App Port
 const port = 3000;
@@ -50,6 +51,7 @@ app.use('/suites', suites);
 app.use('/features', features);
 app.use('/scenarios', scenarios);
 app.use('/steps', steps);
+app.use('/results', results);
 
 // Index Route
 app.get('/', (req, res) => {

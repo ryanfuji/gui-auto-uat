@@ -2,6 +2,7 @@ import Project from '../models/project.model';
 import fs from 'fs';
 import Feature from '../models/feature.model';
 import Scenario from '../models/scenario.model';
+import Suite from '../models/suite.model';
 
 export default class ProjectsService {
 
@@ -20,6 +21,18 @@ export default class ProjectsService {
     }
 
     async delete(projectId){
+        let suites = await Suite.find({projectId: projectId});
+        let features = await Feature.find({projectId: projectId});
+        let scenarios = await Scenario.find({projectId: projectId});
+        for(let suite of suites){
+            let deletedSuite = await Suite.findByIdAndRemove(suite._id);
+        }
+        for(let scenario of scenarios){
+            let deletedScenario = await Scenario.findByIdAndRemove(scenario._id);
+        }
+        for(let feature of features){
+            let deletedFeature = await Feature.findByIdAndRemove(feature._id);
+        }
         return await Project.findByIdAndRemove(projectId);
     }
 

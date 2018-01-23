@@ -4,6 +4,9 @@ import { ProjectsService } from '../../services/projects.service';
 import { ProjectModel } from '../../models/project.model';
 import { NavigationStateService } from '../../services/navigation-state.service';
 import * as feather from 'feather-icons';
+import { FeatureRunnerService } from '../../services/feature-runner.service';
+import { ResultsService } from '../../services/results.service';
+import { ResultsStateService } from '../../services/results-state.service';
 
 @Component({
   selector: 'app-projects',
@@ -27,10 +30,15 @@ export class ProjectsComponent implements OnInit, AfterViewChecked {
   editProjectButtonClicked: boolean = false;
   showProjectGenerateFeaturesFailure: boolean = false;
   showProjectGenerateFeaturesSuccess: boolean = false;
+  showProjectRunFeaturesFailure: boolean = false;
+  showRunFeaturesSuccess: boolean = false;
 
   constructor(private projectsSevice: ProjectsService,
     private formBuilder: FormBuilder,
-    private navigationStateService: NavigationStateService) {
+    private navigationStateService: NavigationStateService,
+    private featureRunnerService: FeatureRunnerService,
+    private resultsService: ResultsService,
+    private resultsStateService: ResultsStateService) {
       this.createProjectForm();
   }
 
@@ -174,6 +182,43 @@ export class ProjectsComponent implements OnInit, AfterViewChecked {
           this.showLoadingImage = false;
         }
       );
+  }
+
+  runFeatures(projectId: string, projectTitle: string){
+    this.showLoadingImage = true;
+    this.projectsSevice.generateFeatures(projectId)
+      .subscribe(
+        (success) => {
+          this.featureRunnerService.runFeatures()
+            .subscribe(
+              (result) => {
+                this.generateResults(projectId, projectTitle);
+              },
+              (error) => {
+                this.generateResults(projectId, projectTitle);
+              }
+            );
+        },
+        (error) => {
+          this.showProjectGenerateFeaturesFailure = true;
+          this.showLoadingImage = false;
+        }
+      );
+  }
+
+  generateResults(projectId: string, projectTitle: string){
+    this.resultsService.createResult(projectId, projectTitle)
+      .subscribe(
+        (result) => {
+          this.showRunFeaturesSuccess = true;
+          this.resultsStateService.announceNewTestResult();
+          this.showLoadingImage = false;
+        },
+        (error) => {
+          this.showProjectRunFeaturesFailure = true;
+          this.showLoadingImage = false;
+        }
+      )
   }
 
 }

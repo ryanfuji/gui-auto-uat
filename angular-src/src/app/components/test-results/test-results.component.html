@@ -1,0 +1,17 @@
+<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+  <span>Test Results</span>
+</h6>
+<ul class="nav flex-column mb-2">
+  <li class="nav-item" *ngFor="let result of results">
+    <div class="d-flex justify-content-between">
+      <a class="nav-link" routerLink="/test-result/{{result._id}}">
+        <span data-feather="file-text"></span>
+        {{result.start | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm'}}
+      </a>
+      <a class="align-items-center text-muted" (click)="deleteTestResult(result._id)" style="padding-top: 7px; padding-right: 5px;
+        color: #007bff !important; cursor: pointer;">
+        <span data-feather="x-circle"></span>
+      </a>
+    </div>
+  </li>
+</ul>

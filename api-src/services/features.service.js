@@ -1,4 +1,5 @@
 import Feature from '../models/feature.model';
+import Scenario from '../models/scenario.model';
 
 export default class FeaturesService {
 
@@ -17,6 +18,10 @@ export default class FeaturesService {
     }
 
     async delete(featureId){
+        let scenarios = await Scenario.find({featureId: featureId});
+        for(let scenario of scenarios){
+            let deletedScenario = await Scenario.findByIdAndRemove(scenario._id);
+        }
         return await Feature.findByIdAndRemove(featureId);
     }
 

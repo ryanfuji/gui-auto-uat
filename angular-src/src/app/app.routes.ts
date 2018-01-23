@@ -6,6 +6,7 @@ import { SuitesGuardService } from './services/suites-guard.service';
 import { FeaturesGuardService } from './services/features-guard.service';
 import { ScenariosComponent } from './components/scenarios/scenarios.component';
 import { ScenariosGuardService } from './services/scenarios-guard.service';
+import { TestResultDetailComponent } from './components/test-result-detail/test-result-detail.component';
 
 export const appRoutes: Routes = [
   {
@@ -26,5 +27,9 @@ export const appRoutes: Routes = [
     path: 'scenarios',
     component: ScenariosComponent,
     canActivate: [ScenariosGuardService]
+  },
+  {
+    path: 'test-result/:resultId',
+    component: TestResultDetailComponent
   }
 ];

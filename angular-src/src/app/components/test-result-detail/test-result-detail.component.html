@@ -1,0 +1,31 @@
+<div *ngIf="showLoadingImage" class="loading"><span class="loadingTextContainer"><strong>Processing...Please Wait.</strong></span></div>
+<div *ngIf="showErrorRetrievingResult" class="alert alert-danger" role="alert">
+  There was a problem retrieving the test result from the database.
+</div>
+<h4>Test Result Details</h4>
+<div class="col-sm-12" *ngIf="result">
+  <h6>Project: {{result.projectTitle}}</h6>
+  <p><strong>Started: </strong>{{result.start | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm:ss'}}</p>
+  <p><strong>Finished: </strong>{{result.end | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm:ss'}}</p>
+  <div class="col-sm-12">
+    <h6>Tests</h6>
+    <div class="col-sm-12" *ngFor="let scenario of result.scenarios">
+      <p><strong>Scenario:</strong> {{scenario.title}}</p>
+      <div class="col-sm-12" *ngFor="let test of scenario.tests">
+        <div *ngIf="test.state === 'passed'">
+          <p style="color: green;">Passed: {{test.title}}</p>
+        </div>
+        <div *ngIf="test.state === 'failed'">
+          <p style="color: red;">Failed: {{test.title}}</p>
+          <div class="col-sm-12">
+            <p style="color: red;">Message: {{test.err.message}}</p>
+            <p style="color: red;">Stack: {{test.err.stack}}</p>
+          </div>
+        </div>
+        <div *ngIf="!test.state">
+          <p style="color: orange">Skipped: {{test.title}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
