@@ -24,8 +24,8 @@
       <tr *ngFor="let suite of suites">
         <td (click)="selectSuite(suite)">{{suite.title}}</td>
         <td>
-          <a (click)="openModal(suite)"><span data-feather="edit-2"></span></a>&nbsp;&nbsp;
-          <a (click)="deleteSuite(suite._id)"><span data-feather="x-circle"></span></a>
+          <a (click)="openModal(suite)" title="Edit Suite"><span data-feather="edit-2"></span></a>&nbsp;&nbsp;
+          <a (click)="deleteSuite(suite._id)" title="Delete Suite"><span data-feather="x-circle"></span></a>
         </td>
       </tr>
     </tbody>

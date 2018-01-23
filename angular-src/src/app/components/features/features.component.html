@@ -28,8 +28,8 @@
         <td (click)="selectFeature(feature)">{{feature.story}}</td>
         <td (click)="selectFeature(feature)">{{feature.filename}}</td>
         <td>
-          <a (click)="openModal(feature)"><span data-feather="edit-2"></span></a>&nbsp;&nbsp;
-          <a (click)="deleteFeature(feature._id)"><span data-feather="x-circle"></span></a>
+          <a (click)="openModal(feature)" title="Edit Feature"><span data-feather="edit-2"></span></a>&nbsp;&nbsp;
+          <a (click)="deleteFeature(feature._id)" title="Delete Feature"><span data-feather="x-circle"></span></a>
         </td>
       </tr>
     </tbody>

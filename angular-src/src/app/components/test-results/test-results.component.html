@@ -8,7 +8,7 @@
         <span data-feather="file-text"></span>
         {{result.start | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm'}}
       </a>
-      <a class="align-items-center text-muted" (click)="deleteTestResult(result._id)" style="padding-top: 7px; padding-right: 5px;
+      <a title="Delete Test Result" class="align-items-center text-muted" (click)="deleteTestResult(result._id)" style="padding-top: 7px; padding-right: 5px;
         color: #007bff !important; cursor: pointer;">
         <span data-feather="x-circle"></span>
       </a>

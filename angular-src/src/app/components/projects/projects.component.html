@@ -36,10 +36,10 @@
         <tr *ngFor="let project of projects">
           <td (click)="selectProject(project)">{{project.title}}</td>
           <td>
-            <a (click)="runFeatures(project._id, project.title)"><span data-feather="play-circle"></span></a>&nbsp;&nbsp;
-            <a (click)="generateFeatures(project._id)"><span data-feather="zap"></span></a>&nbsp;&nbsp;
-            <a (click)="openModal(project)"><span data-feather="edit-2"></span></a>&nbsp;&nbsp;
-            <a (click)="deleteProject(project._id)"><span data-feather="x-circle"></span></a>
+            <a (click)="runFeatures(project._id, project.title)" title="Run Features"><span data-feather="play-circle"></span></a>&nbsp;&nbsp;
+            <a (click)="generateFeatures(project._id)" title="Generate Features"><span data-feather="zap"></span></a>&nbsp;&nbsp;
+            <a (click)="openModal(project)" title="Edit Project"><span data-feather="edit-2"></span></a>&nbsp;&nbsp;
+            <a (click)="deleteProject(project._id)" title="Delete Project"><span data-feather="x-circle"></span></a>
           </td>
         </tr>
       </tbody>

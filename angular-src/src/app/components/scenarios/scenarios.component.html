@@ -19,8 +19,8 @@
         <tr *ngFor="let scenario of scenarios">
           <td (click)="selectFeature(feature)">{{scenario.title}}</td>
           <td>
-            <a (click)="viewScenario(scenario)"><span data-feather="zoom-in"></span></a>&nbsp;&nbsp;
-            <a (click)="deleteScenario(scenario._id)"><span data-feather="x-circle"></span></a>
+            <a (click)="viewScenario(scenario)" title="View Details"><span data-feather="zoom-in"></span></a>&nbsp;&nbsp;
+            <a (click)="deleteScenario(scenario._id)" title="Delete Scenario"><span data-feather="x-circle"></span></a>
           </td>
         </tr>
       </tbody>
@@ -32,7 +32,6 @@
   </div>
 </div>
 <app-create-scenario *ngIf="componentToOpen==='createScenario'"></app-create-scenario>
-<app-edit-scenario *ngIf="componentToOpen==='editScenario'"></app-edit-scenario>
 <div class="backdrop" [ngStyle]="{'display':display}"></div>
 <div *ngIf="addModalToDom" class="modal" [ngStyle]="{'display':display}">
   <div class="modal-dialog">
