@@ -1,6 +1,6 @@
 # GUI Auto UAT
 
-GUI Auto UAT is a webapp for creating and running automated User Acceptance Tests (Behavior Tests) easily through a web interface. It is built on top of WebdriverIO and utilized the Cucumber Gherkin syntax for human readable browser automation test.
+GUI Auto UAT is a webapp for creating and running automated User Acceptance Tests (Behavior Tests) easily through a web interface. It is built on top of WebdriverIO and utilizes the Cucumber Gherkin syntax for human readable browser automation tests.
 
 ## Getting Started
 
