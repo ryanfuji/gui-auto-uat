@@ -10,8 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 Some things you will need...
 
-1) A MongoDB instance running see [MongoDB Installing](https://docs.mongodb.com/manual/installation/) for details
-2) NodeJS and NPM see [NodeJS](https://nodejs.org/en/) for downloading and installing
+1) A MongoDB v3+ instance running see [MongoDB Installing](https://docs.mongodb.com/manual/installation/) for details
+2) NodeJS v8+ and NPM v5.6+ see [NodeJS](https://nodejs.org/en/) for downloading and installing
 3) Must also have GIT installed see [Installing GIT](https://git-scm.com/book/en/v1/Getting-Started-Installing-Git)
 
 ### Installing
