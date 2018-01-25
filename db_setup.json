@@ -1,4 +1,3 @@
-{"_id":{"$oid":"5a5fb3688a161a253443f56a"},"step":"I open the url \"%N%\"","type":"given"}
 {"_id":{"$oid":"5a5fb4028a161a253443f56b"},"step":"I open the url \"%N%\"","type":"given"}
 {"_id":{"$oid":"5a5fb4578a161a253443f56c"},"step":"the element \"%N%\" is visible","type":"given"}
 {"_id":{"$oid":"5a5fb51e8a161a253443f56e"},"step":"the element \"%N%\" is not visible","type":"given"}

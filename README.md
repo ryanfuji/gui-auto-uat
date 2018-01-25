@@ -28,6 +28,12 @@ cd into the gui-auto-uat directory then run
 npm install
 ```
 
+cd into the gui-auto-uat/api-src directory then run
+
+```
+npm install
+```
+
 cd into the gui-auto-uat/angular-src then run
 
 ```
@@ -42,7 +48,7 @@ then initialize the steps collection by running
 mongoimport -d gui-auto-uat-db -c steps --file <path to repo>/gui-auto-uat/db_setup.json
 ```
 
-start the node backend, from the gui-auto-uat dir, run
+start the node backend, from the gui-auto-uat/api-src dir, run
 
 ```
 npm run start

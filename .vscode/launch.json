@@ -4,13 +4,36 @@
 	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
 	"configurations": [
-
+{
+    "type": "node",
+    "request": "launch",
+    "name": "Launch Program",
+    "program": "${workspaceFolder}/app.js"
+},
 		{
             "type": "node",
             "request": "launch",
             "name": "Launch App.js",
             "program": "${workspaceRoot}/api-src/app.js",
-            "outFiles": [ "${workspaceRoot}/.compiled/**/*.js" ]
-          }
+            "outFiles": [ "${workspaceRoot}/api-src/.compiled/**/*.js" ]
+          },
+          {
+            "type": "node",
+            "request": "launch",
+            "port": 5859,
+            "protocol": "inspector",
+            "name": "WebdriverIO",
+            "timeout": 40000,
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
+            "cwd": "${workspaceRoot}",
+            "console": "integratedTerminal",
+            // This args config runs only the file that's open and displayed
+            // (e.g., a file in test/spec/):
+            "args":[
+                "wdio.BUILD.conf.js"
+                // To run a specific file, you can also do:
+                //"--spec", "test/specs/foo.spec.js"
+            ]
+        }
 	]
 }

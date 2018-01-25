@@ -23,7 +23,6 @@ import { ScenariosGuardService } from './services/scenarios-guard.service';
 import { ScenariosService } from './services/scenarios.service';
 import { StepsService } from './services/steps.service';
 import { CreateScenarioComponent } from './components/scenarios/create-scenario/create-scenario.component';
-import { EditScenarioComponent } from './components/scenarios/edit-scenario/edit-scenario.component';
 import { ScenarioStateService } from './services/scenario-state.service';
 import { StepComponent } from './components/scenarios/create-scenario/step/step.component';
 import { FeatureRunnerService } from './services/feature-runner.service';
@@ -43,7 +42,6 @@ import { TestResultDetailComponent } from './components/test-result-detail/test-
     SuitesComponent,
     ScenariosComponent,
     CreateScenarioComponent,
-    EditScenarioComponent,
     StepComponent,
     TestResultsComponent,
     TestResultDetailComponent

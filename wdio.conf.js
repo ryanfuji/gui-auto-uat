@@ -1,4 +1,6 @@
 exports.config = {
+    //debug: false,
+    //execArgv: ['--inspect=127.0.0.1:5859'],
     //
     // ==================
     // Specify Test Files

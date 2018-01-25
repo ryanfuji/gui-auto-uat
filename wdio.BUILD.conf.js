@@ -4,6 +4,6 @@ wdioConfig.config.capabilities = [{
     browserName: 'chrome',
 }];
 
-wdioConfig.config.services = ['phantomjs','chromedriver'];
+wdioConfig.config.services = ['selenium-standalone'];
 
 exports.config = wdioConfig.config;

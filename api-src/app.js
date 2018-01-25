@@ -8,7 +8,7 @@ import databaseConfig from './config/database.conf';
 mongoose.Promise = global.Promise;
 
 // Connect to MongoDB Database
-mongoose.connect(databaseConfig.database, {useMongoClient: true});
+mongoose.connect(databaseConfig.database);
 
 // On Connection
 mongoose.connection.on('connected', () => {

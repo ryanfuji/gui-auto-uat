@@ -1,5 +1,6 @@
 import Result from '../models/result.model';
 import fs from 'fs';
+const importFresh = require('import-fresh');
 
 export default class ResultsService {
 
@@ -17,7 +18,7 @@ export default class ResultsService {
 
     async create(projectId, projectTitle){
         const resultsDir = __dirname.replace('/api-src/services', '/results');
-        let resultsObj = require(resultsDir + '/results.json');
+        let resultsObj = importFresh(resultsDir + '/results.json');
         let result = new Result();
         result.projectId = projectId;
         result.projectTitle = projectTitle;

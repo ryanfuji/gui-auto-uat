@@ -1,0 +1,26 @@
+{
+  "name": "api-src",
+  "version": "1.0.0",
+  "description": "GUI Auto UAT NodeJS Backend",
+  "main": "app.js",
+  "scripts": {
+    "start": "babel-node app.js --presets es2015",
+    "start-dev": "nodemon --exec npm run start",
+    "compile": "babel ./ --ignore node_modules --out-dir ./.compiled --source-maps"
+  },
+  "author": "Ryan Fujiwara <rpfujiw@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "~6.26.0",
+    "babel-preset-es2015": "~6.24.0",
+    "babel-register": "~6.26.0",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "express-promise-router": "^2.0.0",
+    "import-fresh": "^2.0.0",
+    "mongoose": "*",
+    "nodemon": "^1.14.11"
+  }
+}

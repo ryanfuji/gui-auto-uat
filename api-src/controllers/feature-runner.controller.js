@@ -11,7 +11,7 @@ export default class FeatureRunnerController {
      * @param {*} next
      */
     async runFeatures(req, res, next){
-        let result = await execAsync('npm run test:features');
+        let result = await execAsync('cd ../;npm run test:features');
         res.status(200).json(result);
     }
 
